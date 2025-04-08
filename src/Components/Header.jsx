@@ -1,15 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { getAuth, signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase';
 
 const Header = () => {
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    const authInstance = getAuth();
+    signOut(authInstance).then(() => {
+      navigate('/login');
+    });
+  };
+
   return (
-    <header className="bg-pink-300 py-4 container mx-auto flex justify-between items-center px-4 rounded-b-xl shadow">
-      <div className="text-lg font-bold text-white">Art Gallery</div>
-      <ul className="flex items-center space-x-4 text-white font-medium">
-        <li><Link to="/" className="hover:underline">View Gallery</Link></li>
-        <li><Link to="/upload" className="hover:underline">Upload Artwork</Link></li>
-        <li><a href="#profile" className="hover:underline">Profile</a></li>
-      </ul>
+    <header className="bg-pink-500 py-4 px-6 flex justify-between items-center shadow-lg sticky top-0 z-50">
+      <div className="text-2xl font-bold text-white">🎨 Art Gallery</div>
+      <nav>
+        <ul className="flex space-x-6 text-white font-medium">
+          {user ? (
+            <>
+              <li><Link to="/home" className="hover:underline">Home</Link></li>
+              <li><Link to="/gallery" className="hover:underline">Gallery</Link></li>
+              <li><Link to="/upload" className="hover:underline">Upload</Link></li>
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="hover:underline focus:outline-none"
+                >
+                  Logout
+                </button>
+              </li>
+            </>
+          ) : null}
+        </ul>
+      </nav>
     </header>
   );
 };

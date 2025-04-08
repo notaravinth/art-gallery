@@ -8,7 +8,7 @@ async function initDB() {
       host: 'localhost',
       port: 3306,
       user: 'root',
-      password: 'admin', // make sure this is the correct password
+      password: 'admin', 
       database: 'art_gallery',
     });
     console.log('✅ Connected to MySQL');
