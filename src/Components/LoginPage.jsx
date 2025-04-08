@@ -46,7 +46,7 @@ const LoginPage = () => {
         />
         <button
           type="submit"
-          className="w-full bg-pink-500 text-white py-2 rounded hover:bg-pink-600"
+          className="w-full bg-pink-500 text-white py-2 rounded hover:bg-pink-600 cursor-pointer"
         >
           Log In
         </button>
