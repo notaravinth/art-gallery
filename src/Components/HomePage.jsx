@@ -7,7 +7,6 @@ const HomePage = () => {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen text-center animate-fade-in px-4">
       <h1 className="text-5xl font-extrabold mb-12 text-pink-600">Welcome to your Art Gallery</h1>
-        <p className="text-xl mb-8 text-gray-700">Art is an emotion. share it.</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl">
         <div
           onClick={() => navigate('/gallery')}
