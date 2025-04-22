@@ -9,8 +9,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    const authInstance = getAuth();
-    signOut(authInstance).then(() => {
+    signOut(auth).then(() => {
       navigate('/login');
     });
   };
@@ -20,11 +19,11 @@ const Header = () => {
       <div className="text-2xl font-bold text-white">🎨 Art Gallery</div>
       <nav>
         <ul className="flex space-x-6 text-white font-medium">
-          {user ? (
+          {user && (
             <>
               <li><Link to="/home" className="hover:underline">Home</Link></li>
               <li><Link to="/gallery" className="hover:underline">Gallery</Link></li>
-              <li><Link to="/upload" className="hover:underline">Upload</Link></li>
+              <li><Link to="/profile" className="hover:underline">Profile</Link></li> {/* ✅ */}
               <li>
                 <button
                   onClick={handleLogout}
@@ -34,7 +33,7 @@ const Header = () => {
                 </button>
               </li>
             </>
-          ) : null}
+          )}
         </ul>
       </nav>
     </header>
