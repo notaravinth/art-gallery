@@ -5,8 +5,6 @@ import mysql.connector
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-
-# Enable CORS for all domains and methods
 CORS(app, supports_credentials=True)
 
 @app.after_request
@@ -60,6 +58,15 @@ def upload_artwork():
             return jsonify({'error': 'No selected file'}), 400
         if not title or not artist or not user_id:
             return jsonify({'error': 'Missing title, artist, or user ID'}), 400
+
+        # 🔍 Check if user exists
+        cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))
+        user = cursor.fetchone()
+
+        # ✨ If user not found, insert them
+        if not user:
+            cursor.execute("INSERT INTO users (id, name) VALUES (%s, %s)", (user_id, "Unnamed User"))
+            db.commit()
 
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
