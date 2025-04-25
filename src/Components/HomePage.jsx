@@ -15,7 +15,7 @@ const HomePage = () => {
           🎨 View Gallery
         </div>
         <div
-          onClick={() => navigate('/upload')}
+          onClick={() => navigate('/profile')}
           className="cursor-pointer bg-pink-400 hover:bg-pink-500 text-white py-10 px-8 rounded-xl shadow-lg text-2xl font-semibold transform transition-transform hover:scale-105"
         >
           ⬆️ Upload Artwork
