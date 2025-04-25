@@ -79,7 +79,7 @@ def upload_artwork():
         filepath = _unique_filepath(file.filename)
         file.save(filepath)
 
-        # insert artwork row
+        # insert artwork rows
         cursor.execute(
             """
             INSERT INTO artwork (title, artist, image, user_id)
