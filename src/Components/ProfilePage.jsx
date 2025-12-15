@@ -1,4 +1,3 @@
-// ProfilePage.jsx ───────────── React dashboard ─────────────
 import React, { useState, useEffect, useRef } from 'react';
 import { auth } from '../firebase';
 
@@ -12,7 +11,6 @@ const ProfilePage = () => {
   const fileInputRef = useRef(null);
   const user = auth.currentUser;
 
-  /* ─── Fetch current user's artworks ───────────────────── */
   const fetchUserArtworks = async () => {
     if (!user) return;
     try {
@@ -29,15 +27,12 @@ const ProfilePage = () => {
     }
   };
 
-  /* ─── File picked ─────────────────────────────────────── */
   const handleImageChange = (e) => {
     const picked = e.target.files[0];
     if (!picked) return;
     setFile(picked);
     setPreview(URL.createObjectURL(picked));
   };
-
-  /* ─── Upload artwork ──────────────────────────────────── */
   const handleUpload = async () => {
     if (!file || !title.trim() || !artist.trim()) {
       alert('Please provide image, title, and artist.');
@@ -63,7 +58,6 @@ const ProfilePage = () => {
         const { error } = await res.json();
         throw new Error(error || 'Upload failed');
       }
-      // clear form & refresh list
       setTitle('');
       setArtist('');
       setFile(null);
@@ -76,7 +70,6 @@ const ProfilePage = () => {
     }
   };
 
-  /* ─── Delete artwork ──────────────────────────────────── */
   const handleDelete = async (id) => {
     if (deletingId) return;
     try {
@@ -98,7 +91,6 @@ const ProfilePage = () => {
 
   useEffect(() => { fetchUserArtworks(); }, [user]);
 
-  /* ─── Render ──────────────────────────────────────────── */
   return (
     <section className="bg-pink-50 py-12 px-4 min-h-screen">
       <div className="max-w-5xl mx-auto">
@@ -106,7 +98,6 @@ const ProfilePage = () => {
           🎨 Your Dashboard
         </h2>
 
-        {/* Upload form */}
         <form
           onSubmit={(e) => { e.preventDefault(); handleUpload(); }}
           className="bg-white p-8 rounded-xl shadow-md mb-12 space-y-6 border"
@@ -159,7 +150,6 @@ const ProfilePage = () => {
           </button>
         </form>
 
-        {/* Gallery */}
         <h3 className="text-3xl font-bold text-pink-600 mb-6 text-center">
           🖼️ Your Uploaded Artworks
         </h3>

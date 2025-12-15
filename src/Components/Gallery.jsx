@@ -18,7 +18,6 @@ const Gallery = () => {
     })();
   }, []);
 
-  // show only artworks with a real image
   const artworksWithImages = artworks.filter((a) => hasValidImage(a.image));
 
   return (
