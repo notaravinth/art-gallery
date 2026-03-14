@@ -18,6 +18,8 @@ const Gallery = () => {
     })();
   }, []);
 
+  //error and images
+
   const artworksWithImages = artworks.filter((a) => hasValidImage(a.image));
 
   return (

@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 
 const UploadArtwork = () => {
-  const [file, setFile] = useState(null);       // store the File, not the preview
-  const [preview, setPreview] = useState(null); // preview URL
+  const [file, setFile] = useState(null);   
+  const [preview, setPreview] = useState(null);
   const fileInputRef = useRef(null);
 
   const handleImageChange = (e) => {
@@ -14,8 +14,7 @@ const UploadArtwork = () => {
   };
 
   const handleUpload = async () => {
-    if (!file) return;                          // safety guard
-    // …upload logic here…
+    if (!file) return;                        
   };
 
   return (
@@ -42,7 +41,7 @@ const UploadArtwork = () => {
 
       <button
         type="button"
-        disabled={!file}                         // 🔑 only clickable with a file
+        disabled={!file}                        
         onClick={handleUpload}
         className={`mt-4 mx-auto block font-bold py-2 px-4 rounded
           ${file ? 'bg-pink-500 hover:bg-pink-600 text-white'
